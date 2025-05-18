@@ -6,7 +6,8 @@ const exercisesRoutes = Router();
 
 const exercisesController = new ExercisesController();
 
-exercisesRoutes.get("/bygroup/:group", exercisesController.index);
+exercisesRoutes.get("/", exercisesController.all);
 exercisesRoutes.get("/:id", exercisesController.show);
+exercisesRoutes.get("/bygroup/:group", exercisesController.index);
 
 module.exports = exercisesRoutes;

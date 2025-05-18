@@ -1,21 +1,27 @@
 const knex = require("../database");
 
 class ExercisesController {
-  async index(request, response) {
-    const { group } = request.params;
+ async index(request, response) {
+  const { group } = request.params;
 
-    const exercises = await knex("exercises").where({ group }).orderBy("name");
+  const exercises = await knex("exercises").where({ group }).orderBy("name");
 
-    return response.json(exercises);
-  }
+  return response.json(exercises);
+ }
 
-  async show(request, response) {
-    const { id } = request.params;
+ async all(_, response) {
+  const exercisesAll = await knex("exercises").orderBy("name");
 
-    const exercise = await knex("exercises").where({ id }).first();
+  return response.json(exercisesAll);
+ }
 
-    return response.json(exercise);
-  }
+ async show(request, response) {
+  const { id } = request.params;
+
+  const exercise = await knex("exercises").where({ id }).first();
+
+  return response.json(exercise);
+ }
 }
 
 module.exports = ExercisesController;
